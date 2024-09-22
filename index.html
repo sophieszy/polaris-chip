@@ -16,6 +16,7 @@
       font-family: sans-serif;
       background-color: #ededed;
     }
+
     polaris-chip {
       margin: 16px;
     }
@@ -26,17 +27,56 @@
 <body>
   <h1>polaris-chip</h1>
   <!-- this is going to do whatever the tag's defaults are -->
-  <polaris-chip title="News of Record" link="https://psu.edu/"></polaris-chip>
+  <polaris-chip title="News of Record" link="https://psu.edu/" shiny></polaris-chip>
   <polaris-chip title="Faculty and Staff"></polaris-chip>
   <polaris-chip title="Sports are the only thing that matter"></polaris-chip>
   <polaris-chip title="Grants and donations"></polaris-chip>
 
   <h1>my-card</h1>
-  <my-card></my-card>
+
+  <my-card> </my-card>
+
+  <my-card title="Very cool website"
+    description="Vat19 is a unique online store where you can buy the most strange and interesting stuff on the internet"
+    image='https://i.ytimg.com/vi/oKeZCzYnx8Q/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD2dFO8fJMAQnw4nFEipZKMWwwsSg'
+    link='https://vat19.com' button='Click Here' theme='vat19'>
+
+  </my-card>
+
+  <my-card title='Sale!'
+    image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9OloDGUYYZfmz2inQIoIOofXTZfveYVNFzg&s"
+    description="Don't miss out on our amazing sale! Click for details." link="https://amazon.com" button="Shop Now"
+    theme="sale">
+
+  </my-card>
+
+  <my-card title='YouTube!'
+    image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcgDC5KbVCgEGLQgwB22LXxPNb4jBvyHwLmw&s"
+    description="Brand new website where you can watch whatever video you want! Click to get started"
+    link="https://youtube.com" button="Click Here" theme="youtube">
+
+  </my-card>
+
+  <my-card title="Spelling Help"
+    image="https://media.licdn.com/dms/image/v2/D5612AQGrP8RFAlDq7A/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1708179199997?e=1732752000&v=beta&t=RvhEdWjWNgyV9eSa0cxyR4j7pfPJ9tOkMAcCWW645Kc"
+    description="Need help with grammar and spelling? Try out Grammarly and get free assistance!"
+    link="https://grammarly.com" button="Try Here" theme="grammarly"></my-card>
+  </my-card>
+
+
 
   <!-- this is what is bringing in the definition for this tag -->
   <script type="module" src="./src/polaris-chip.js"></script>
   <script type="module" src="./src/my-card.js"></script>
+
+
+
+
+  <!---where do i put css, do i need the buttons, what is a -->
+
+
+
+
 </body>
 
 </html>
