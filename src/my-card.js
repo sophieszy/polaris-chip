@@ -14,22 +14,33 @@ export class MyCard extends LitElement {
 
   constructor() {
     super();
-    this.title = "Do you want to earn MONEY?!";
-    this.image = 'https://media.istockphoto.com/id/476196983/photo/business-man-displaying-a-spread-of-cash.jpg?s=612x612&w=0&k=20&c=RBMDX5ChvnD-M8Vcxgwgo6D3jhxlFSjUjNMCLWO7gtM=';
-    this.description = 'The image is a well-dressed gentleman showing off all of his "hard-earned" money. Click below if you would like to achieve the same';
-    this.button = 'Details';
-    this.link = 'https://hax.psu.edu';
+    this.title = '';
+    this.image = null;
+    this.description = '';
+    this.button = '';
+    this.link = '#';
     this.theme = '';
+    this.fancy = false;
   }
 
   static get styles() {
     return css`
-      :host {
-        display: block;
-      }
+     
+  :host {
+        display: inline-block;
+  }
 
-      .card {
-  background-color: orange;
+  :host([fancy]) {
+  background-color: pink;
+  border: 2px solid fuchsia;
+  box-shadow: 10px 5px 5px red;
+} 
+
+
+    
+
+.card {
+  background-color: var(--card-background-color);
   max-width: 400px;
   border: 8px solid green;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 3);
@@ -38,11 +49,14 @@ export class MyCard extends LitElement {
   
 }
 
+
 .card-image {
   margin-top: 12px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  max-height: 300px;
+  aspect-ratio: 3/2 auto;
 }
 
 .text-container {
@@ -50,42 +64,53 @@ export class MyCard extends LitElement {
   padding: 16px;
 }
 
-.details-button {
+button {
   background-color: teal;
   font-weight: bold;
   font-size: 20px;
   width: 100px;
-  height: 80px;
+  height: 60px;
   margin: 12px;
+
 }
 
-.card.sale {
-    background-color: lightpink;
-    border: 8px solid mediumblue;
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+     
+
+}
+
+a:focus,
+a:hover {
+        background-color: #b02c42;}
+
+details summary {
+    text-align: left;
+    font-size: 20px;
+    padding: 8px 0;
   }
 
-  .card.vat19 {
-    background-color: purple;
-    border: 8px solid yellow;
-    
+  details[open] summary {
+    font-weight: bold;
   }
 
-  .card.youtube {
-    background-color: red;
-    border: 8px dashed white;
+  details div {
+    border: 2px solid black;
+    text-align: left;
+    padding: 8px;
+    max-height: 130px;
+    overflow-y: scroll;
+  } `;
   }
 
-  .card.grammarly {
-    background-color: white;
-    border: 8px green solid;
-  }
 
- 
-
-
-
-    `;
-  }
 
   render() {
     return html`
@@ -95,16 +120,30 @@ export class MyCard extends LitElement {
   <div class="text-container">
   <h1 class="card-title">${this.title}</h1>
   <p>${this.description}</p>
-  <a href="${this.link}">
-  <button class="details-button"> ${this.button} </button>
-  </a>
+  <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+  <summary>Description</summary>
+  <div>
+    <slot>${this.description}</slot>
+  </div>
+</details>
+  <button><a href="${this.link}">${this.button}</a></button>
+    
   </div>   
   </div>  
   
     `;
-
-
   }
+
+  openChanged(e) {
+    console.log(e.newState);
+    if (e.newState === "open") {
+      this.fancy = true;
+    }
+    else {
+      this.fancy = false;
+    }
+  }
+
 
   static get properties() {
     return {
@@ -113,9 +152,13 @@ export class MyCard extends LitElement {
       description: { type: String },
       button: { type: String },
       link: { type: String },
-      theme: { type: String }
+      theme: { type: String },
+      fancy: { type: Boolean, reflect: true }
+
+
     };
   }
+
 }
 
 globalThis.customElements.define(MyCard.tag, MyCard);
